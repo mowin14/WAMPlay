@@ -50,7 +50,7 @@ public class WAMPlayServer extends Controller {
 
 						@Override
 						public void invoke() throws Throwable {
-                           Disconnect.call(client);
+                            Disconnect.call(client);
 							WAMPlayServer.removeClient(client);
 						}
 					});
@@ -60,6 +60,7 @@ public class WAMPlayServer extends Controller {
 						@Override
 						public void invoke(JsonNode request) throws Throwable {
 							handleRequest(client, request);
+                            client.lastUpdateTime = System.currentTimeMillis();
 						}
 					});
 				}

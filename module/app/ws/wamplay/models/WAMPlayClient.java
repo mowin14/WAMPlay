@@ -19,13 +19,17 @@ public class WAMPlayClient {
 	final String ID;
 	final WebSocket.Out<JsonNode> out;
 	JsonNode lastSent;
-    public Object obj; //for additional to client
+    //additional to client
+    public Object obj;
+    //the last client sent msg time(ms)
+    public long lastUpdateTime;
 
 	public WAMPlayClient(WebSocket.Out<JsonNode> out) {
 		this.out = out;
 		topics = new HashSet<String>();
 		prefixes = new HashMap<String, String>();
 		ID = UUID.randomUUID().toString();
+        lastUpdateTime = System.currentTimeMillis();
 	}
 
 	public void send(JsonNode response) {
